@@ -659,7 +659,7 @@ function CTASection({ onRestart }) {
     zIndex: 999,
   }}
 >
-  ↑ Scroll Up Pretty Human ✨
+  ↑ Scroll Up @ Party page only✨
 </motion.div>
     </div>
   );
