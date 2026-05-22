@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import confetti from "canvas-confetti";
 
 function random(min, max) { return Math.random() * (max - min) + min; }
 
@@ -399,18 +400,27 @@ function ClosingSection() {
   );
 }
 
-// ─── SECTION 5 — CTA buttons ──────────────────────────────────────
 function CTASection({ onRestart }) {
   const [showPopup, setShowPopup] = useState(false);
+
+  const fireConfetti = () => {
+    confetti({
+      particleCount: 100,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ["#ffb3c6", "#d4b3ff", "#ffd6b3", "#b3e0ff", "#ffd6e0"],
+    });
+  };
 
   return (
     <div style={{ padding: "20px 20px 80px", textAlign: "center" }}>
       <RevealOnScroll>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 20, justifyContent: "center", marginBottom: 32 }}>
+
           <motion.button
             whileHover={{ y: -6, scale: 1.05, boxShadow: "0 12px 36px rgba(220,130,170,0.45)" }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => setShowPopup(true)}
+            onClick={() => { setShowPopup(true); fireConfetti(); }}
             style={{
               background: "linear-gradient(135deg, rgba(255,182,210,0.65), rgba(255,218,190,0.55))",
               backdropFilter: "blur(14px)",
@@ -422,7 +432,7 @@ function CTASection({ onRestart }) {
               fontFamily: "'Playfair Display', serif",
               fontWeight: 600,
               color: "#9b5a78",
-              cursor: "pointer",
+              cursor: "none",
               boxShadow: "0 4px 20px rgba(220,130,170,0.2)",
               letterSpacing: "0.02em",
             }}>
@@ -444,7 +454,7 @@ function CTASection({ onRestart }) {
               fontFamily: "'Playfair Display', serif",
               fontWeight: 600,
               color: "#7b5a9b",
-              cursor: "pointer",
+              cursor: "none",
               boxShadow: "0 4px 20px rgba(216,180,255,0.2)",
               letterSpacing: "0.02em",
             }}>
@@ -462,7 +472,7 @@ function CTASection({ onRestart }) {
         </p>
       </RevealOnScroll>
 
-      {/* Party popup */}
+      {/* Upgraded Party Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
@@ -475,7 +485,8 @@ function CTASection({ onRestart }) {
               backdropFilter: "blur(14px)",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}
-            onClick={() => setShowPopup(false)}>
+            onClick={() => setShowPopup(false)}
+          >
             <motion.div
               initial={{ scale: 0.4, rotate: -8, opacity: 0 }}
               animate={{ scale: 1, rotate: 0, opacity: 1 }}
@@ -483,47 +494,116 @@ function CTASection({ onRestart }) {
               transition={{ type: "spring", stiffness: 160, damping: 16 }}
               onClick={(e) => e.stopPropagation()}
               style={{
-                background: "linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,228,240,0.9))",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,228,240,0.92))",
                 border: "1.5px solid rgba(255,182,210,0.5)",
-                borderRadius: 24,
+                borderRadius: 28,
                 padding: "44px 36px",
-                maxWidth: 380,
+                maxWidth: 400,
                 width: "90%",
                 textAlign: "center",
-                boxShadow: "0 24px 64px rgba(220,130,170,0.2)",
-              }}>
+                boxShadow: "0 24px 64px rgba(220,130,170,0.22), 0 4px 16px rgba(200,150,230,0.12)",
+              }}
+            >
               <motion.div
-                animate={{ rotate: [0, -15, 15, -8, 8, 0] }}
-                transition={{ duration: 1, delay: 0.3 }}
-                style={{ fontSize: 56, marginBottom: 16 }}>
+                animate={{ rotate: [0, -15, 15, -8, 8, 0], scale: [1, 1.15, 1] }}
+                transition={{ duration: 1.2, delay: 0.3 }}
+                style={{ fontSize: 60, marginBottom: 16 }}
+              >
                 🎉
               </motion.div>
+
               <h2 style={{
                 fontFamily: "'Playfair Display', serif",
-                color: "#8b4567", fontSize: 22, marginBottom: 14,
+                color: "#8b4567",
+                fontSize: "clamp(18px, 3vw, 24px)",
+                marginBottom: 10,
+                fontWeight: 700,
               }}>
-                Request Received! 😌
+                Official Birthday Tax Collected 😌
               </h2>
+
               <p style={{
                 fontFamily: "'Dancing Script', cursive",
-                color: "#b07890", fontSize: 19, lineHeight: 1.7, marginBottom: 24,
+                color: "#b07890",
+                fontSize: 18,
+                marginBottom: 16,
+                lineHeight: 1.6,
               }}>
-                Best gift accepted: Cake + Food + Unlimited Treats 😌🍰
+                Payment accepted in:
               </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => setShowPopup(false)}
+
+              <div style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 6,
+                marginBottom: 28,
+                fontFamily: "'Dancing Script', cursive",
+                fontSize: 17,
+                color: "#a07090",
+                lineHeight: 1.9,
+              }}>
+                <span>🍰 Cake</span>
+                <span>🍕 Food</span>
+                <span>🎁 Treats</span>
+                <span>💗 One Happy Smile</span>
+              </div>
+
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                <motion.button
+                  whileHover={{ scale: 1.06, y: -3, boxShadow: "0 8px 28px rgba(220,130,170,0.4)" }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => setShowPopup(false)}
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255,182,210,0.7), rgba(255,218,190,0.6))",
+                    border: "1.5px solid rgba(255,182,210,0.55)",
+                    borderRadius: 999,
+                    padding: "11px 30px",
+                    color: "#9b5a78",
+                    fontFamily: "'Playfair Display', serif",
+                    fontWeight: 600,
+                    fontSize: 15,
+                    cursor: "none",
+                    boxShadow: "0 4px 16px rgba(220,130,170,0.2)",
+                  }}
+                >
+                  Deal 🤝
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.06, y: -3, boxShadow: "0 8px 28px rgba(216,180,255,0.4)" }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => setShowPopup(false)}
+                  style={{
+                    background: "linear-gradient(135deg, rgba(216,180,255,0.55), rgba(255,182,210,0.4))",
+                    border: "1.5px solid rgba(216,180,255,0.5)",
+                    borderRadius: 999,
+                    padding: "11px 30px",
+                    color: "#7b5a9b",
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: 15,
+                    cursor: "none",
+                    boxShadow: "0 4px 16px rgba(216,180,255,0.2)",
+                  }}
+                >
+                  Maybe Later 😆
+                </motion.button>
+              </div>
+
+              {/* easter egg */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
                 style={{
-                  background: "linear-gradient(135deg, rgba(255,182,210,0.6), rgba(216,180,255,0.5))",
-                  border: "1px solid rgba(255,182,210,0.5)",
-                  borderRadius: 999, padding: "10px 28px",
-                  color: "#9b5a78",
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: 14, cursor: "pointer",
-                }}>
-                Okay fine 😆🎀
-              </motion.button>
+                  marginTop: 22,
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: 13,
+                  color: "#d4b0c0",
+                  opacity: 0.75,
+                }}
+              >
+                "I'll be there for you 💛"
+              </motion.p>
             </motion.div>
           </motion.div>
         )}
@@ -531,7 +611,6 @@ function CTASection({ onRestart }) {
     </div>
   );
 }
-
 // ─── MAIN EXPORT ──────────────────────────────────────────────────
 export default function TimelinePage({ onRestart }) {
   return (
