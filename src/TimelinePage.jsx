@@ -1,3 +1,10 @@
+import photo1 from "./assets/Diids1.jpg";
+import photo2 from "./assets/Diids2.jpg";
+import photo3 from "./assets/Diids3.jpg";
+import photo4 from "./assets/Diids6.jpg";
+import photo5 from "./assets/Diids9.jpg";
+
+
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import confetti from "canvas-confetti";
@@ -125,11 +132,36 @@ function IntroHero() {
 
 // ─── SECTION 2 — timeline cards ───────────────────────────────────
 const MEMORIES = [
-  { title: "Our Childhood Chaos 🌈", text: "From silly fights to random laughter, childhood with you was never boring.", emoji: "🌈", tilt: -3, color: "#fce4ec" },
-  { title: "The Protective One 💛",  text: "You always looked out for me, even when I didn't realize it.",              emoji: "💛", tilt:  4, color: "#fff9e6" },
-  { title: "Little Wins, Big Smiles ✨", text: "Celebrating tiny victories together made them feel huge.",              emoji: "🏆", tilt: -2, color: "#f3e5f5" },
-  { title: "The Silent Support 🌸",  text: "Even in difficult times, your support always stayed.",                     emoji: "🌸", tilt:  3, color: "#fce4ec" },
-  { title: "Still My Safe Place 💌", text: "No matter how much life changes, you'll always be family, comfort, and home.", emoji: "🏠", tilt: -4, color: "#e8f5e9" },
+  {
+    title: "Childhood Chaos 🌈",
+    text: "Don't look at me , silly gal 🙄.....deepu ko dekh.",
+    image: photo1,
+    tilt: -3,
+  },
+  {
+    title: "The Parliament One 💛",
+    text: "It has to be there and remember the POST RAIN chaos. 😂",
+    image: photo2,
+    tilt: 4,
+  },
+  {
+    title: "Little Wins, Big Smiles ✨",
+    text: "Celebrating small victories together, ek dusre k CHOCOLATES khane k baad!!🍿😎🧃.",
+    image: photo3,
+    tilt: -2,
+  },
+  {
+    title: "The Silent Click 🌸",
+    text: "Guitar wala cake , or wo Police car jiska hm drop test krte the ❤️‍🔥😌🫶🏻🤡🥲.",
+    image: photo4,
+    tilt: 3,
+  },
+  {
+    title: "Still My Slay Place 💌",
+    text: "Me, My, Myslef 🛐😤🫠🎀🐒.",
+    image: photo5,
+    tilt: -4,
+  },
 ];
 
 function MemoryCard({ memory, index }) {
@@ -171,19 +203,17 @@ function MemoryCard({ memory, index }) {
           ))}
 
           {/* photo placeholder */}
-          <div style={{
-            width: "100%",
-            height: "clamp(120px, 22vw, 160px)",
-            background: `linear-gradient(135deg, ${memory.color}, #f8d7f0, #ede7f6)`,
-            borderRadius: "3px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "clamp(36px, 7vw, 52px)",
-            marginBottom: 14,
-          }}>
-            {memory.emoji}
-          </div>
+          <img
+  src={memory.image}
+  alt={memory.title}
+  style={{
+    width: "100%",
+    height: "clamp(120px, 22vw, 160px)",
+    objectFit: "cover",
+    borderRadius: "3px",
+    marginBottom: 14,
+  }}
+/>
 
           <h3 style={{
             fontFamily: "'Playfair Display', serif",
@@ -274,10 +304,10 @@ function Timeline() {
 
 // ─── SECTION 3 — admire grid ──────────────────────────────────────
 const ADMIRE = [
-  { label: "Your strength", emoji: "💪", color: "#fce4ec", glow: "rgba(255,182,210,0.4)" },
-  { label: "Your kindness", emoji: "🌷", color: "#f3e5f5", glow: "rgba(216,180,255,0.4)" },
-  { label: "Your patience", emoji: "✨", color: "#fff9e6", glow: "rgba(255,218,190,0.4)" },
-  { label: "Your chaos",    emoji: "😆", color: "#fce4ec", glow: "rgba(255,182,210,0.4)" },
+  { label: "Your strength in CLASS 1", emoji: "💪", color: "#fce4ec", glow: "rgba(255,182,210,0.4)" },
+  { label: "Your kindness for Santosh ka Chaat", emoji: "🌷", color: "#f3e5f5", glow: "rgba(216,180,255,0.4)" },
+  { label: "Your patience with Deepu during eating", emoji: "✨", color: "#fff9e6", glow: "rgba(255,218,190,0.4)" },
+  { label: "Your chaos(FULL ON)",    emoji: "😆", color: "#fce4ec", glow: "rgba(255,182,210,0.4)" },
 ];
 
 function AdmireGrid() {
@@ -608,11 +638,35 @@ function CTASection({ onRestart }) {
           </motion.div>
         )}
       </AnimatePresence>
+      <motion.div
+  animate={{ y: [0, -6, 0] }}
+  transition={{ duration: 1.5, repeat: Infinity }}
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  style={{
+    position: "fixed",
+    bottom: 28,
+    left: "50%",
+    transform: "translateX(-50%)",
+    background: "rgba(255,255,255,0.7)",
+    backdropFilter: "blur(10px)",
+    padding: "10px 18px",
+    borderRadius: 999,
+    fontFamily: "'Dancing Script', cursive",
+    color: "#b07890",
+    fontSize: 18,
+    boxShadow: "0 4px 16px rgba(220,130,170,0.2)",
+    cursor: "pointer",
+    zIndex: 999,
+  }}
+>
+  ↑ Scroll Up Pretty Human ✨
+</motion.div>
     </div>
   );
 }
 // ─── MAIN EXPORT ──────────────────────────────────────────────────
 export default function TimelinePage({ onRestart }) {
+  
   return (
     <div style={{
       minHeight: "100vh",
@@ -638,6 +692,7 @@ export default function TimelinePage({ onRestart }) {
         <ClosingSection />
         <CTASection onRestart={onRestart} />
       </div>
+      
     </div>
   );
 }

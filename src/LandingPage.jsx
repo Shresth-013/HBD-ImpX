@@ -1,5 +1,10 @@
+import pic1 from "./assets/Diids7.jpg";
+import pic2 from "./assets/Diids10.jpg";
+import pic3 from "./assets/Diids8.jpg";
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 
 const PETALS = ["🌸", "🌷", "✿", "❀", "🌺"];
 const SPARKLES = ["✦", "✧", "⋆", "✨", "·", "★"];
@@ -84,7 +89,7 @@ function Sparkles() {
   );
 }
 
-function PolaroidCard({ emoji, label, tilt, delay }) {
+function PolaroidCard({ image, label, tilt, delay }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotate: tilt }}
@@ -106,21 +111,17 @@ function PolaroidCard({ emoji, label, tilt, delay }) {
           alignItems: "center",
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            height: "140px",
-            background: "linear-gradient(135deg, #fce4ec, #f8d7f0, #ede7f6)",
-            borderRadius: "2px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "52px",
-            marginBottom: "8px",
-          }}
-        >
-          {emoji}
-        </div>
+        <img
+  src={image}
+  alt={label}
+  style={{
+    width: "100%",
+    height: "140px",
+    objectFit: "cover",
+    borderRadius: "2px",
+    marginBottom: "8px",
+  }}
+/>
         <span
           style={{
             fontFamily: "'Dancing Script', cursive",
@@ -256,9 +257,26 @@ export default function LandingPage({ onEnter }) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          <PolaroidCard emoji="🌸" label="Best memories" tilt={-5} delay={0.9} />
-          <PolaroidCard emoji="💕" label="Always & forever" tilt={2} delay={1.05} />
-          <PolaroidCard emoji="✨" label="Our story" tilt={-3} delay={1.2} />
+<PolaroidCard
+  image={pic1}
+  label="❤️ Mummy"
+  tilt={-5}
+  delay={0.9}
+/>
+
+<PolaroidCard
+  image={pic2}
+  label="❤️ Me"
+  tilt={2}
+  delay={1.05}
+/>
+
+<PolaroidCard
+  image={pic3}
+  label="❤️ Daddy"
+  tilt={-3}
+  delay={1.2}
+/>
         </motion.div>
 
         <motion.button

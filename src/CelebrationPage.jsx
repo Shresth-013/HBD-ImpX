@@ -369,7 +369,8 @@ function CakeSection({ onNext }) {
               Happy Birthday Didi ❤️
             </h2>
             <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(16px,2.5vw,19px)", color: "#a0607a", lineHeight: 1.8 }}>
-              Thank you for being my guide, my support, and one of the most important people in my life. This little website holds a few memories, love, and chaos — just for you ✨
+Built this tiny website for my sister because apparently being annoying full-time wasn’t enough 😌✨
+A little bit of memories, chaos, and proof that I’m the better sibling.
             </p>
             <div style={{ marginTop: 12, fontSize: 22 }}>💕 🌸 ✨</div>
           </motion.div>
