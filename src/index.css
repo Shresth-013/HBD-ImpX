@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@keyframes floatPetal {
+  0%   { transform: translateY(-10vh) translateX(0px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(110vh) translateX(80px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50%       { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float-petal {
+  animation: floatPetal linear infinite;
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.animate-sparkle {
+  animation: sparkle ease-in-out infinite;
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.animated-bg {
+  background: linear-gradient(135deg, #fff0f5, #fce4ec, #f3e5f5, #fff8f0, #fce4ec, #f8e8ff);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+}
